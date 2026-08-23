@@ -1,8 +1,19 @@
 aid: irl
 name: IRL
-description: 'IRL is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  IRL (legal name Get Together, Inc.) was a San Francisco social calendar and group-messaging
+  app that let people share and sync calendars with friends and follow venues, organizations
+  and notable figures. It raised more than $200 million in venture capital, including a $170
+  million Series C led by SoftBank Vision Fund 2 in 2021 that valued the company at $1.17
+  billion. In June 2023 a special committee of the board reported that roughly 95 percent of
+  the app's claimed users were automated or bot accounts, and the board voted to dissolve the
+  company; the SEC charged founder and former CEO Abraham Shafi with fraud on July 31, 2024.
+  The company is defunct: irl.com now serves only an asset-inquiry notice, the marketing and
+  app hosts are abandoned Netlify shells, docs.irl.com (Postman-hosted developer docs) returns
+  404, and api.irl.com is a dangling CNAME to a deleted AWS Elastic Beanstalk environment.
+  No public API, OpenAPI, SDK, or developer program remains.
 url: https://raw.githubusercontent.com/api-evangelist/irl/refs/heads/main/apis.yml
+image: https://www.irl.com/apple-touch-icon.png
 x-type: company
 x-source: harvest:secondary-market
 x-tier: stub
@@ -12,6 +23,13 @@ created: '2026-08-23'
 modified: '2026-08-23'
 tags:
 - Company
+- Social
+- Messaging
+- Events
+- Calendar
+- Consumer
+- Mobile
+- Defunct
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -20,4 +38,33 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
+  url: https://irl.com/
+- type: SecondaryMarket
   url: https://forgeglobal.com/irl_stock/
+- type: DomainSecurity
+  url: security/irl-domain-security.yml
+x-enrichment:
+  date: '2026-08-23'
+  status: minimal
+  artifacts_added: 2
+  pass: local-v1
+x-coverage:
+  state: none
+  reason: defunct
+  detail: >-
+    IRL (Get Together, Inc.) was dissolved by its own board in June 2023 after a special
+    committee found ~95% of its users were bots; irl.com now returns only an asset-inquiry
+    notice, the Postman-hosted developer docs at docs.irl.com are deleted, and api.irl.com
+    is a dangling CNAME to a removed AWS Elastic Beanstalk environment.
+  evidence:
+  - url: https://irl.com/
+    status: 200
+  - url: https://docs.irl.com/
+    status: 404
+  - url: https://irl.com/openapi.json
+    status: 403
+  - url: https://www.irl.com/.well-known/api-catalog
+    status: 200
+  - url: https://api.irl.com/
+    status: 0
+  checked: '2026-08-23'

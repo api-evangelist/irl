@@ -1,0 +1,135 @@
+generated: '2026-08-23'
+method: probed
+source: live GET of /.well-known/* on every host IRL still resolves
+note: >-
+  Recorded absence. IRL is defunct and every host was probed with a browser User-Agent.
+  irl.com answers 403 to every path except "/" (an asset-inquiry notice). www.irl.com is an
+  abandoned Netlify SPA catch-all that returns HTTP 200 with the SAME 28,030-byte HTML shell
+  for every path INCLUDING a deliberately bogus control path, so none of its 200s are
+  documents. app.irl.com returns HTTP 500 for every /.well-known/* path (dead SSR backend)
+  and 404 on the control. NO document was fetched or saved, so NO WellKnown and NO SecurityTxt
+  pointer is emitted in apis.yml.
+hit_count: 0
+hosts:
+- host: https://irl.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 403
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+    file: null
+  - path: /.well-known/api-catalog
+    status: 403
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 403
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 403
+    file: null
+  - path: /.well-known/agent.json
+    status: 403
+    file: null
+  soft_404_control:
+    path: /zzz-control-404-xyz
+    status: 403
+    bytes: 263
+    note: host denies every path; only "/" returns 200
+- host: https://www.irl.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    catch_all: true
+    bytes: 28030
+    content_type: text/html
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    catch_all: true
+    bytes: 28030
+    content_type: text/html
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    catch_all: true
+    bytes: 28030
+    content_type: text/html
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    catch_all: true
+    bytes: 28030
+    content_type: text/html
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    catch_all: true
+    bytes: 28030
+    content_type: text/html
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    catch_all: true
+    bytes: 28030
+    content_type: text/html
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    catch_all: true
+    bytes: 28030
+    content_type: text/html
+  soft_404_control:
+    path: /zzz-control-404-xyz
+    status: 200
+    bytes: 28030
+    content_type: text/html
+    note: >-
+      identical byte count and content type to every /.well-known/* response — this is a
+      single-page-app catch-all, so every 200 above is a soft 404, not a document
+- host: https://app.irl.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 500
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 500
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 500
+    file: null
+  - path: /.well-known/api-catalog
+    status: 500
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 500
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 500
+    file: null
+  - path: /.well-known/agent.json
+    status: 500
+    file: null
+  soft_404_control:
+    path: /zzz-control-404-xyz
+    status: 404
+    bytes: 25231
+    note: control returns 404 while every /.well-known/* path 500s — dead SSR backend
+unreachable_hosts:
+- host: api.irl.com
+  resolution: NXDOMAIN
+  note: >-
+    CNAME points at prod-irl-1.eba-suxtvaxx.us-east-1.elasticbeanstalk.com, which no longer
+    resolves — a dangling DNS record left behind by the wind-down. Not probeable.
+- host: docs.irl.com
+  status: 404
+  note: >-
+    CNAME points at phs.getpostman.com (Postman-hosted documentation). The Postman docs page
+    that IRL published there has been deleted; every path returns Postman's "Not found" page.
+- host: img.irl.com
+  resolution: NXDOMAIN
+  note: asset host referenced by the live og:image meta tag on www.irl.com; no longer resolves
