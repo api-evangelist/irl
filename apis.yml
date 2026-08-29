@@ -13,6 +13,17 @@ description: >-
   404, and api.irl.com is a dangling CNAME to a deleted AWS Elastic Beanstalk environment.
   No public API, OpenAPI, SDK, or developer program remains.
 url: https://raw.githubusercontent.com/api-evangelist/irl/refs/heads/main/apis.yml
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - none
+  generated: '2026-08-28'
+  method: derived
 image: https://www.irl.com/apple-touch-icon.png
 x-type: company
 x-source: harvest:secondary-market
